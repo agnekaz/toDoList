@@ -1,6 +1,8 @@
 import React from 'react';
 import TaskItem from './TaskItem';
 import type { Task } from './task';
+import '../App.scss';
+
 
 interface TaskItemListProps{
     tasks: Task[];
@@ -10,7 +12,7 @@ interface TaskItemListProps{
 
 function TaskItemList({tasks, toggleIsCompleted, handleDeleteTask}: TaskItemListProps){
     const items = tasks.map((task) => (
-        <div key={task.id}>
+        <div className="list-container" key={task.id}>
             <TaskItem task={task}
             toggleIsCompleted={toggleIsCompleted}
             handleDeleteTask={handleDeleteTask}/>

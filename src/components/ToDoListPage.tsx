@@ -3,19 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Input from './Input';
 import type { Task } from './task';
 import TaskItemList from './TaskItemList'
+import '../App.scss';
 
-/* const initialTasks: Task[] = [
-  {
-    description: "task one",
-    isCompleted: false,
-    id: "1",
-  },
-  {
-    description: "task two",
-    isCompleted: false,
-    id: "2",
-  },
-]; */
 function ToDoListPage(){
     const [tasks, setTasks] = useState<Task[]>([]);
     const addTodo = (description: string) => {
@@ -38,11 +27,14 @@ function ToDoListPage(){
     };
     return(
         <>
-        <Input addTodo={addTodo}/>
-        <TaskItemList tasks={tasks}
-        toggleIsCompleted={toggleIsCompleted}
-        handleDeleteTask={handleDeleteTask}
-        />
+        
+        <div className="container">
+        <h2>To Do List</h2>
+          <Input addTodo={addTodo}/>
+          <TaskItemList tasks={tasks}
+          toggleIsCompleted={toggleIsCompleted}
+          handleDeleteTask={handleDeleteTask}/>
+        </div>
         </>
     );
 }

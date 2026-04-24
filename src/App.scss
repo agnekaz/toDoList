@@ -1,0 +1,120 @@
+.body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+@mixin flex-container($direction: column, $justify: center, $align: center, $gap: 4px){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+.container{
+    width: 40vw;
+    min-width: 400px;
+    height: auto;
+    padding: 10px;
+    @include flex-container(column, space-evenly, center, 4px);
+    border-radius: 12px;
+    background-color: rgb(182, 213, 227);
+}
+.input-group{
+    width: 35vw;
+    min-width: 350px;
+    margin: 10px;
+    padding: 6px 6px 6px 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background-color: #ffffff;
+    //border: 1px solid #2b2b2b;
+    border-radius: 12px;
+}
+.input{
+    border: none;
+    outline: none;
+    background: transparent;
+
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+
+    font-size: 16px;
+    color: #111;
+
+    &::placeholder{
+        color: #8b93a0;
+    }
+}
+.button-submit{
+    width: 40px;
+    height: 40px;
+    flex: 0 0 44px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #2b2b2b;
+    border-radius: 12px;
+    background: #3e3e3e;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover{
+        background: #111;
+    }
+    &:active{
+        transform: translateY(1px);
+    }
+}
+.list-container{
+    width: 40vw;
+    min-width: 400px;
+    margin: 10px;
+    @include flex-container(row, space-evenly, center, 4px)
+}
+
+.task-description{
+    width: 35vw;
+    min-width: 350px;
+    height: 3vh;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: aliceblue;
+    @include flex-container(row, center, center, 4px);
+}
+
+.discription{
+    width: 30vw;
+    min-width: 300px;
+    height:auto;
+}
+
+.isCompleted{
+    width: 20px;
+    height: 20px;
+    border-radius: 12px;
+    border: none;
+}
+.fa{
+    font-size: 1.5rem;
+}
+
+.button-delete{
+    margin: 5px;
+    background: transparent;
+    border: 0;
+    &:hover{
+        color: #a85151;
+    }
+}

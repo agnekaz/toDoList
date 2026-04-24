@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import type { Task } from './task';
+import '../App.scss';
 
 interface TaskItemProps{
     task: Task;
@@ -9,17 +10,21 @@ interface TaskItemProps{
 }
 function TaskItem({task, toggleIsCompleted, handleDeleteTask}: TaskItemProps){
     return(
-        <div className="flex-row">
-            <div>
+        <div className="task-conatiner">
+            <div className="task-description">
                 <input type="checkbox"
                 className="isCompleted"
                 checked={task.isCompleted}
                 onChange={() => toggleIsCompleted(task.id)}
                 />
                 <span className="discription">{task.description}</span>
+                <button className="button-delete"
+                    onClick={() => handleDeleteTask(task.id)}>
+                    <span className="fa fa-remove"></span>
+                </button>
             </div>
-            <button className="bordered"
-            onClick={() => handleDeleteTask(task.id)}>Delete</button>
+            
+
         </div>
     );
 }

@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import ToDoListPage from './components/ToDoListPage';
-import './App.css'
+import './App.scss';
 
 function App() {
 
   return (
     <>
-    <ToDoListPage/>
+    <div className="body">
+       <ToDoListPage/>
+    </div>
+   
     </>
   )
 }
