@@ -1,4 +1,5 @@
-import React from 'react';
+import { useMemo } from 'react';
+import { Reorder, AnimatePresence } from 'motion/react';
 import TaskItem from './TaskItem';
 import type { Task } from './task';
 import '../App.scss';
@@ -11,15 +12,35 @@ interface TaskItemListProps{
 }
 
 function TaskItemList({tasks, toggleIsCompleted, handleDeleteTask}: TaskItemListProps){
-    const items = tasks.map((task) => (
-        <div className="list-container" key={task.id}>
-            <TaskItem task={task}
-            toggleIsCompleted={toggleIsCompleted}
-            handleDeleteTask={handleDeleteTask}/>
-        </div>
-    ))
+    useMemo(() => {
+        return tasks.sort((a, b) => {
+            if (a.isCompleted && !b.isCompleted) return 0;
+            return a.isCompleted? 1:-1;
+        });
+    },[tasks]);
+    
     return(
-        <div className="row">{items}</div>
+        <Reorder.Group 
+            axis="y" 
+            values={tasks} 
+            onReorder={() => {}}
+            className="row"
+        >
+            {tasks.map((task) => (
+                <Reorder.Item 
+                    key={task.id} 
+                    value={task}
+                    className="list-container"
+                >
+                    <TaskItem 
+                        task={task}
+                        toggleIsCompleted={toggleIsCompleted}
+                        handleDeleteTask={handleDeleteTask}
+                    />
+                </Reorder.Item>
+            ))}
+        </Reorder.Group>
+
     );
 }
 

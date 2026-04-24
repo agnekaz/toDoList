@@ -1,5 +1,3 @@
-import React from 'react';
-import { useState } from 'react';
 import type { Task } from './task';
 import '../App.scss';
 
@@ -23,8 +21,6 @@ function TaskItem({task, toggleIsCompleted, handleDeleteTask}: TaskItemProps){
                     <span className="fa fa-remove"></span>
                 </button>
             </div>
-            
-
         </div>
     );
 }
