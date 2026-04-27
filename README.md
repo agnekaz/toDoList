@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# To Do List (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple to‑do list app built with **React**, **TypeScript**, and **Vite**. Tasks can be **added**, **marked as completed**, **deleted**, and are **persisted to `localStorage`** so they stay after refresh.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Add tasks**: type a task and press Enter (or click the submit button)
+- **Complete tasks**: toggle the checkbox
+- **Delete tasks**: remove tasks with the delete button
+- **Persistence**: tasks are saved in the browser via `localStorage`
+- **Nice UI**: SCSS styling and [Font Awesome](https://fontawesome.com/v4/) icons
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19**
+- **TypeScript**
+- **Vite**
+- **SCSS** (Sass)
+- **motion** (for list/item animations)
+- **uuid** (task ids)
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Node.js** (recommended: latest LTS)
+- **npm**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Then open the URL printed in your terminal.
+
+## Scripts
+
+```bash
+npm run dev       # start dev server
+npm run build     # typecheck + production build
+npm run preview   # preview production build locally
+npm run lint      # run ESLint
+```
+
+## Project structure (high level)
+
+- `src/components/ToDoListPage.tsx`: main page (state + `localStorage` persistence)
+- `src/components/Input.tsx`: add-task input form
+- `src/components/TaskItemList.tsx`: renders the task list (animated)
+- `src/components/TaskItem.tsx`: single task row (checkbox + delete)
+- `src/App.scss`: app styles
+
+## Notes
+
+- Tasks are stored under the `localStorage` key **`tasks`**.
