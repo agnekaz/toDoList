@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Input from './Input';
 import type { Task } from './task';
@@ -6,7 +6,15 @@ import TaskItemList from './TaskItemList'
 import '../App.scss';
 
 function ToDoListPage(){
-    const [tasks, setTasks] = useState<Task[]>([]);
+    const [tasks, setTasks] = useState<Task[]>(() => {
+      const storedTasks = localStorage.getItem('tasks');
+      return storedTasks ? JSON.parse(storedTasks) : [];
+    });
+
+    useEffect(() => {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
+    
     const addTodo = (description: string) => {
       const newTask = {
         description,
@@ -15,6 +23,7 @@ function ToDoListPage(){
       };
       setTasks([...tasks, newTask]);
     };
+
     const toggleIsCompleted = (id: string) => {
       setTasks(tasks.map( task =>
         task.id === id ? {
