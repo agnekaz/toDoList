@@ -20,26 +20,35 @@ function TaskItemList({tasks, toggleIsCompleted, handleDeleteTask}: TaskItemList
     },[tasks]);
     
     return(
-        <Reorder.Group 
+        <AnimatePresence>
+            <Reorder.Group 
             axis="y" 
             values={tasks} 
             onReorder={() => {}}
-            className="row"
-        >
+            className="row">
             {tasks.map((task) => (
                 <Reorder.Item 
                     key={task.id} 
                     value={task}
-                    className="list-container"
-                >
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                        type: 'spring',
+                        stiffness: 200,
+                        damping: 25,
+                        mass: 1,
+                    }}
+                    className="list-container">
                     <TaskItem 
                         task={task}
                         toggleIsCompleted={toggleIsCompleted}
-                        handleDeleteTask={handleDeleteTask}
-                    />
+                        handleDeleteTask={handleDeleteTask}/>
                 </Reorder.Item>
             ))}
         </Reorder.Group>
+        </AnimatePresence>
+        
 
     );
 }

@@ -1,120 +1,165 @@
+// Design tokens
+
+$radius: 12px;
+$radius-sm: 6px;
+
+$text: #111;
+$muted: #8b93a0;
+
+$panel: rgb(182, 213, 227);
+$card: aliceblue;
+$surface: #ffffff;
+
+$border: #2b2b2b;
+$primary: #2f6feb;
+$danger: #a85151;
+
+$container-w: 40vw;
+$container-min-w: 400px;
+
+$item-w: 35vw;
+$item-min-w: 350px;
+
+$desc-w: 30vw;
+$desc-min-w: 250px;
+
+@mixin flex-container($direction: column, $justify: center, $align: center, $gap: 4px) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
 .body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+  min-height: 100vh;
+  @include flex-container(column, center, center, 16px);
 }
 
-@mixin flex-container($direction: column, $justify: center, $align: center, $gap: 4px){
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
-    gap: $gap;
+.container {
+  width: $container-w;
+  min-width: $container-min-w;
+  height: auto;
+  padding: 10px;
+  border-radius: $radius;
+  background-color: $panel;
+  @include flex-container(column, space-evenly, center, 4px);
 }
 
-.container{
-    width: 40vw;
-    min-width: 400px;
-    height: auto;
-    padding: 10px;
-    @include flex-container(column, space-evenly, center, 4px);
-    border-radius: 12px;
-    background-color: rgb(182, 213, 227);
-}
-.input-group{
-    width: 35vw;
-    min-width: 350px;
-    margin: 10px;
-    padding: 6px 6px 6px 14px;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    background-color: #ffffff;
-    //border: 1px solid #2b2b2b;
-    border-radius: 12px;
-}
-.input{
-    border: none;
-    outline: none;
-    background: transparent;
-
-    flex: 1;
-    min-width: 0;
-    height: 40px;
-
-    font-size: 16px;
-    color: #111;
-
-    &::placeholder{
-        color: #8b93a0;
-    }
-}
-.button-submit{
-    width: 40px;
-    height: 40px;
-    flex: 0 0 44px;
-
-    display: grid;
-    place-items: center;
-
-    border: 1px solid #2b2b2b;
-    border-radius: 12px;
-    background: #3e3e3e;
-    color: #ffffff;
-    font-size: 20px;
-    line-height: 1;
-    cursor: pointer;
-
-    &:hover{
-        background: #111;
-    }
-    &:active{
-        transform: translateY(1px);
-    }
-}
-.list-container{
-    width: 40vw;
-    min-width: 400px;
-    margin: 10px;
-    @include flex-container(row, space-evenly, center, 4px)
+.input-group {
+  width: $item-w;
+  min-width: $item-min-w;
+  margin: 10px;
+  padding: 6px 6px 6px 14px;
+  border-radius: $radius;
+  background-color: $surface;
+  @include flex-container(row, flex-start, center, 10px);
 }
 
-.task-description{
-    width: 35vw;
-    min-width: 350px;
-    height: 3vh;
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: aliceblue;
-    @include flex-container(row, center, center, 4px);
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font-size: 16px;
+  color: $text;
+
+  &::placeholder {
+    color: $muted;
+  }
 }
 
-.discription{
-    width: 30vw;
-    min-width: 300px;
-    height:auto;
+.button-submit {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 44px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid $border;
+  border-radius: $radius;
+  background: #3e3e3e;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    background: $text;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
-.isCompleted{
-    width: 20px;
-    height: 20px;
-    border-radius: 12px;
-    border: none;
+.row {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  @include flex-container(column, flex-start, center, 0);
 }
-.fa{
+
+.list-container {
+  width: $item-w;
+  min-width: $item-min-w;
+  height: 4.5vh;
+  margin: 10px;
+  padding: 0;
+
+  
+
+  @include flex-container(row, center, center, 4px);
+}
+
+.task-description {
+  width: $item-w;
+  min-width: $item-min-w;
+  overflow: hidden;
+  border-radius: $radius;
+  background-color: $card;
+  @include flex-container(row, center, center, 4px);
+}
+.discription-completed {
+  width: $desc-w;
+  min-width: $desc-min-w;
+  height: auto;
+  text-decoration: line-through;
+  color: $muted;
+}
+.discription {
+  width: $desc-w;
+  min-width: $desc-min-w;
+  height: auto;
+}
+
+.isCompleted {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+}
+
+.button-delete {
+  margin: 5px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    color: $danger;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  .fa {
     font-size: 1.5rem;
-}
-
-.button-delete{
-    margin: 5px;
-    background: transparent;
-    border: 0;
-    &:hover{
-        color: #a85151;
-    }
+  }
 }

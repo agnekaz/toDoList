@@ -15,7 +15,7 @@ function TaskItem({task, toggleIsCompleted, handleDeleteTask}: TaskItemProps){
                 checked={task.isCompleted}
                 onChange={() => toggleIsCompleted(task.id)}
                 />
-                <span className="discription">{task.description}</span>
+                {task.isCompleted ? <span className="discription-completed">{task.description}</span> : <span className="discription">{task.description}</span>}
                 <button className="button-delete"
                     onClick={() => handleDeleteTask(task.id)}>
                     <span className="fa fa-remove"></span>
