@@ -14,7 +14,7 @@ function ToDoListPage(){
     useEffect(() => {
       localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
-    
+
     const addTodo = (description: string) => {
       const newTask = {
         description,
