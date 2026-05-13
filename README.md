@@ -2,6 +2,10 @@
 
 A simple to‑do list app built with **React**, **TypeScript**, and **Vite**. Tasks can be **added**, **marked as completed**, **deleted**, and are **persisted to `localStorage`** so they stay after refresh.
 
+## Live demo
+
+- **Deployed app**: [https://to-do-list-mu-flame.vercel.app/](https://to-do-list-mu-flame.vercel.app/)
+
 ## Features
 
 - **Add tasks**: type a task and press Enter (or click the submit button)
