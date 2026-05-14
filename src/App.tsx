@@ -1,4 +1,4 @@
-import ToDoListPage from './components/ToDoListPage';
+import ToDoListPage from './features/ToDoListPage';
 import './App.scss';
 
 function App() {

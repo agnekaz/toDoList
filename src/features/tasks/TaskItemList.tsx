@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Reorder, AnimatePresence } from 'motion/react';
 import TaskItem from './TaskItem';
 import type { Task } from './task';
-import '../App.scss';
+import '../../App.scss';
 
 
 interface TaskItemListProps{
@@ -12,21 +12,21 @@ interface TaskItemListProps{
 }
 
 function TaskItemList({tasks, toggleIsCompleted, handleDeleteTask}: TaskItemListProps){
-    useMemo(() => {
-        return tasks.sort((a, b) => {
+    const orderedTasks = useMemo(() => {
+        return [...tasks].sort((a, b) => {
             if (a.isCompleted && !b.isCompleted) return 0;
-            return a.isCompleted? 1:-1;
+            return a.isCompleted ? 1 : -1;
         });
-    },[tasks]);
-    
+    }, [tasks]);
+
     return(
         <AnimatePresence>
             <Reorder.Group 
             axis="y" 
-            values={tasks} 
+            values={orderedTasks} 
             onReorder={() => {}}
             className="row">
-            {tasks.map((task) => (
+            {orderedTasks.map((task) => (
                 <Reorder.Item 
                     key={task.id} 
                     value={task}

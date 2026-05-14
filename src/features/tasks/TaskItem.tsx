@@ -1,5 +1,5 @@
 import type { Task } from './task';
-import '../App.scss';
+import '../../App.scss';
 
 interface TaskItemProps{
     task: Task;
@@ -17,7 +17,8 @@ function TaskItem({task, toggleIsCompleted, handleDeleteTask}: TaskItemProps){
                 />
                 {task.isCompleted ? <span className="discription-completed">{task.description}</span> : <span className="discription">{task.description}</span>}
                 <button className="button-delete"
-
+                    type="button"
+                    aria-label="Delete task"
                     onClick={() => handleDeleteTask(task.id)}>
                     <span className="fa fa-remove"></span>
                 </button>
